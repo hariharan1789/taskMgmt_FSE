@@ -16,7 +16,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
-mongoose.connect(DBconfig.ConnectionString).then(
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(DBconfig.ConnectionString, {useNewUrlParser: true}).then(
   () => {
     console.log("Project Manager DB is Connected");
   },
