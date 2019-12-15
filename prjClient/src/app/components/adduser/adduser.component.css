@@ -1,0 +1,24 @@
+
+ #filtersubmit {
+  position: relative;
+  z-index: 1;
+  left: -25px;
+  top: 1px;
+  color: #7B7B7B;
+  cursor: pointer;
+  width: 0;
+}
+
+ hr.style5 {
+	background-color: #fff;
+	border-top: 2px dashed #8c8b8b;
+}
+
+.mat-column-right
+ {
+   text-align: center;
+ }
+
+ table {
+  width: 100%;
+}

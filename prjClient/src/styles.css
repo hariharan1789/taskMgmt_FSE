@@ -1,0 +1,81 @@
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+@import "../node_modules/ngx-toastr/toastr.css";
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+
+.toast-bootstrap-compatibility-fix {
+  opacity: 1;
+}
+.ng-dirty.ng-valid[required],
+
+
+.ng-dirty.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+}
+.ng-dirty.ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+
+.alert {
+  padding-top: 1px;
+  padding-left: 2px;
+  padding-bottom: 10px;
+  margin: 0px;
+}
+.astreik {
+
+  color: red;
+}
+.hrLine {
+  border-top: 2px solid rgb(46, 46, 197);
+}
+
+.checkboxPadding {
+  padding: 5px !important;
+
+}
+
+.sortlbl {
+  padding-top: 5px;
+}
+.hrListItem {
+  border-top: 2px dotted gray;
+}
+.list-group-item {
+  padding: 0px;
+}
+
+
+.rangeControl {
+  padding-top: 5px;
+  width: 100%;
+}
+
+label,
+.controlTopPadding {
+  padding-top: 5px;
+}
+
+
+
+
+.searchTable thead,
+.taskTable thead {
+  font-weight: bold;
+}
+.searchTable {
+  width: 30%;
+  overflow-x: auto;
+}
+.table-borderless>tfoot>tr>td,
+.table-borderless>thead>tr>td,
+.table-borderless>tbody>tr>th,
+
+.table-borderless>tfoot>tr>th,
+.table-borderless>tbody>tr>td,
+
+.table-borderless>thead>tr>th {
+  border: none;
+}

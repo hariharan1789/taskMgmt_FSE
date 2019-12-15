@@ -1,0 +1,178 @@
+<h3> {{ userAction }} Project:</h3>
+<div class="col-md-9">
+  <form [formGroup]="projectForm" (ngSubmit)="addorUpdateProject()" novalidate>
+    <div class=" row form-group">
+      <div class="col-md-2">
+        <label for="projectName"><strong>Project: </strong></label>
+      </div>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          name="projectName"
+          aria-describedby="projectName"
+          formControlName="projectName"
+        />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <input
+              type="checkbox"
+              value="SetDates"
+              formControlName="setDates"
+              name="setDates"
+            />
+            <label for="setDates" class="checkboxPadding"><b>Set Start and End Date</b></label
+            >
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <input
+              class="form-control"
+              type="date"
+              placeholder="Start Date"
+              name="startDate"
+              aria-describedby="startDate"
+              formControlName="startDate"
+               [(ngModel)]="prjStartDate"
+               [disabled]="setDate"
+            />
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <input
+              class="form-control"
+              type="date"
+              placeholder="End Date"
+              name="endDate"
+              aria-describedby="endDate"
+              formControlName="endDate"
+               [(ngModel)]="prjEndDate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="priority"><b>Priority:</b></label>
+      </div>
+      <div class="col-md-10">
+        <input
+          type="range"
+          min="0"
+          max="30"
+          step="1"
+          class="rangeControl slider"
+          formControlName="priority"
+          name="priority"
+        />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="manager"><b>Manager:</b></label>
+      </div>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="manager"
+          name="manager"
+          aria-describedby="manager"
+          readonly
+        />
+      </div>
+      <div class="col-md-2">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-toggle="modal"
+          data-target="#userSearchModel"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-12 offset-md-9">
+        <input
+          type="hidden"
+          formControlName="projectId"
+          name="pruserSearchModelojectId"
+        />
+        <button [disabled]="projectForm.invalid" class="btn btn-success" id="btnAction">
+          {{ userAction }}
+        </button>
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="reset()" id="btnReset">
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr style="width: 100%;" class="style5" />
+<h3>View Projects</h3>
+<div class="col-md-9">
+  <div class="row form-group">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search Project"
+        name="search"
+        (input)="search($event.target.value)"
+      />
+    </div>
+  </div>
+</div>
+
+<span class="sortlbl">
+  <strong>Sort By </strong> <button type = "button" class = "btn btn-primary" (click)="sort('Project')" style="margin-left: 30px;">Project Name</button>  
+  <button type = "button" class = "btn btn-primary" (click)="sort('NoOfTasks')" style="margin-left: 30px;">No Of Tasks</button>    
+  <button type = "button" class = "btn btn-primary" (click)="sort('CompletedTasks')" style="margin-left: 30px;">Status</button>
+  <button type = "button" class = "btn btn-primary" (click)="sort('Start_Date')" style="margin-left: 30px;">Start Date</button>
+  <button type = "button" class = "btn btn-primary" (click)="sort('End_Date')" style="margin-left: 30px;">End Date</button>
+  <button type = "button" class = "btn btn-primary" (click)="sort('Priority')" style="margin-left: 30px;">Priority</button> 
+<table class="table table-hover">
+  <thead class="  ">
+    <tr>
+      <th scope="col" >Project Name</th>
+      <th scope="col" >No of Tasks</th>
+      <th scope="col" >Completed</th>
+      <th scope="col" >Start Date</th>
+      <th scope="col" >End Date</th>
+      <th scope="col" >Priority</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prj of Projects; index as i">
+      <td>{{ prj.Project }}</td>
+      <td>{{ prj.NoOfTasks }}</td>
+      <td>{{ prj.CompletedTasks }}</td>
+      <td>{{ prj.Start_Date | date: "MM-dd-yyyy" }}</td>
+      <td>{{ prj.End_Date | date: "MM-dd-yyyy" }}</td>
+      <td>{{ prj.Priority }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="editProject(prj.Project_ID)" 
+        >
+          Edit  
+        </button>
+        &nbsp;&nbsp;
+        <button
+          class="btn btn-danger"
+          (click)="suspendProject(prj.Project_ID)"
+        >
+          Suspend
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<app-searchuser (userSelected)="onManagerSelected($event)"></app-searchuser>
