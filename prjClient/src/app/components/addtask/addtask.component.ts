@@ -146,7 +146,7 @@ export class AddtaskComponent implements OnInit {
             'SUCCESS',
             3000
           );
-          this.reset();
+        //  this.reset();
         } else {
           this.alertService.error(response.Message, 'Error', 3000);
         }
